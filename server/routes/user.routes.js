@@ -3,8 +3,9 @@ const User = require("../models/User");
 const router = express.Router({ mergeParams: true });
 const auth = require("../middleware/auth.middleware");
 
-router.patch("/:userId", async (req, res) => {
+router.patch("/:userId", auth, async (req, res) => {
   try {
+
     // todo: current user id = user id
     const { userId } = req.params;
     // req.user._id устанавливаем в auth middleware
@@ -14,6 +15,7 @@ router.patch("/:userId", async (req, res) => {
         //updatedUser получим только после обновления на БД
         new: true,
       });
+
       res.send(updatedUser);
     } else {
       res.status(401).json({ message: "Unauthorized" });
