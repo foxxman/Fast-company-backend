@@ -13,6 +13,7 @@ router.post('/signUp', [
     //валидация
     check('email', 'Uncorrect email').isEmail(),
     check('password', "Minimum password's length is 8").isLength({min: 8}),
+    
     async (req, res) => {
 
     //проверка ошибок валидации
